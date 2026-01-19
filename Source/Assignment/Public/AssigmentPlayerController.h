@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "AssigmentPlayerController.generated.h"
+class UVMCharacterHealth;
 class UInputMappingContext;
 class UPauseMenuWidget;
 class UPauseMenuViewModel;
@@ -33,7 +34,7 @@ protected:
 	TSubclassOf<UHUDWidget> HudWidgetClass = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
-	TSubclassOf<UHUDViewModel> HudViewModelClass = nullptr;
+	TSubclassOf<UVMCharacterHealth> CharacterHealthViewModelClass = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
 	TSubclassOf<UPauseMenuViewModel> PauseMenuViewModelClass = nullptr;
@@ -53,7 +54,7 @@ private:
 	TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
 
 	UPROPERTY()
-	TObjectPtr<UHUDViewModel> HudViewModel = nullptr;
+	TObjectPtr<UVMCharacterHealth> CharacterHealthViewModel = nullptr;
 
 	UPROPERTY()
 	TObjectPtr<UPauseMenuViewModel> PauseMenuViewModel = nullptr;

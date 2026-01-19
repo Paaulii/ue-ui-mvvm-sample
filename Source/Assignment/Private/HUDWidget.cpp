@@ -1,7 +1,6 @@
 #include "HUDWidget.h"
-#include "HUDViewModel.h"
 
-void UHUDWidget::SetViewModel(UHUDViewModel* HUDViewModel)
+void UHUDWidget::SetCharacterHealthViewModel(UVMCharacterHealth* CharacterHealthVM) const
 {
-	OnViewModelUpdated.Broadcast(HUDViewModel);
+	OnCharacterHealthVMUpdated.Broadcast(CharacterHealthVM);
 }

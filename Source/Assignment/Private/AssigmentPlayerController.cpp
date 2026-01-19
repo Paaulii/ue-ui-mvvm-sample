@@ -5,6 +5,7 @@
 #include "PauseMenuWidget.h"
 #include "PauseMenuViewModel.h"
 #include "HUDWidget.h"
+#include "VMCharacterHealth.h"
 #include "GameFramework/InputDeviceSubsystem.h"
 #include "GameFramework/InputDeviceProperties.h"
 
@@ -50,16 +51,16 @@ void AAssigmentPlayerController::QuitGame()
 
 void AAssigmentPlayerController::SetupUI()
 {
-	if (HudViewModelClass != nullptr && HudWidgetClass != nullptr) 
+	if (CharacterHealthViewModelClass != nullptr && HudWidgetClass != nullptr) 
 	{
-		HudViewModel = NewObject<UHUDViewModel>(this, HudViewModelClass);
-		HudViewModel->SetModel(PlayerCharacter);
+		CharacterHealthViewModel = NewObject<UVMCharacterHealth>(this, CharacterHealthViewModelClass);
+		CharacterHealthViewModel->SetModel(PlayerCharacter);
 
 		HudWidget = CreateWidget<UHUDWidget>(GetWorld(), HudWidgetClass);
 
-		if (HudWidget != nullptr && HudViewModel != nullptr) 
+		if (HudWidget != nullptr && CharacterHealthViewModel != nullptr) 
 		{
-			HudWidget->SetViewModel(HudViewModel);
+			HudWidget->SetCharacterHealthViewModel(CharacterHealthViewModel);
 			HudWidget->AddToViewport();
 		}
 	}
