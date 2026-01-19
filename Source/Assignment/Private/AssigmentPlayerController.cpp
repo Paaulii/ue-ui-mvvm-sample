@@ -6,6 +6,7 @@
 #include "PauseMenuViewModel.h"
 #include "HUDWidget.h"
 #include "VMCharacterHealth.h"
+#include "VMSlotIndicator.h"
 #include "GameFramework/InputDeviceSubsystem.h"
 #include "GameFramework/InputDeviceProperties.h"
 
@@ -55,12 +56,24 @@ void AAssigmentPlayerController::SetupUI()
 	{
 		CharacterHealthViewModel = NewObject<UVMCharacterHealth>(this, CharacterHealthViewModelClass);
 		CharacterHealthViewModel->SetModel(PlayerCharacter);
-
+		
+		SlotIndicatorViewModel = NewObject<UVMSlotIndicator>(this, SlotIndicatorViewModelClass);
+		SlotIndicatorViewModel->SetModel(PlayerCharacter);
+		
 		HudWidget = CreateWidget<UHUDWidget>(GetWorld(), HudWidgetClass);
 
-		if (HudWidget != nullptr && CharacterHealthViewModel != nullptr) 
+		if (HudWidget != nullptr)
 		{
-			HudWidget->SetCharacterHealthViewModel(CharacterHealthViewModel);
+			if (CharacterHealthViewModel != nullptr)
+			{
+				HudWidget->OnSetCharacterHealthViewModel(CharacterHealthViewModel);
+			}
+			
+			if (SlotIndicatorViewModel != nullptr)
+			{
+				HudWidget->OnSetSlotIndicatorViewModel(SlotIndicatorViewModel);
+			}
+			
 			HudWidget->AddToViewport();
 		}
 	}

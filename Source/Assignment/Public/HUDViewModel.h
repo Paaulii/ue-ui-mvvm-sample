@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ViewModelBase.h"
+#include "VMBase.h"
 #include "Enums.h"
 #include "HUDViewModel.generated.h"
 
@@ -10,7 +10,7 @@ class APlayerCharacter;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnChangeHealthState, EHealthState, LastHealthState, EHealthState, NewHealthState);
 
 UCLASS()
-class ASSIGNMENT_API UHUDViewModel : public UViewModelBase
+class ASSIGNMENT_API UHUDViewModel : public UVMBase
 {
 	GENERATED_BODY()
 public: 

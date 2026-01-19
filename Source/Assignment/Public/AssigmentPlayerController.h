@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "AssigmentPlayerController.generated.h"
+class UVMSlotIndicator;
 class UVMCharacterHealth;
 class UInputMappingContext;
 class UPauseMenuWidget;
@@ -39,6 +40,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
 	TSubclassOf<UPauseMenuViewModel> PauseMenuViewModelClass = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
+	TSubclassOf<UVMSlotIndicator> SlotIndicatorViewModelClass = nullptr;
+
 	UPROPERTY(EditDefaultsOnly, Category = Input)
 	UInputMappingContext* DefaultMappingContext = nullptr;
 private:
@@ -52,10 +56,13 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
-
+	
 	UPROPERTY()
 	TObjectPtr<UVMCharacterHealth> CharacterHealthViewModel = nullptr;
-
+	
+	UPROPERTY()
+	TObjectPtr<UVMSlotIndicator> SlotIndicatorViewModel = nullptr;
+	
 	UPROPERTY()
 	TObjectPtr<UPauseMenuViewModel> PauseMenuViewModel = nullptr;
 };

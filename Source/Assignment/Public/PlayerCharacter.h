@@ -18,7 +18,7 @@ class ASSIGNMENT_API APlayerCharacter : public ACharacter
 
 public:
 	APlayerCharacter();
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	float GetHealth() const
 	{

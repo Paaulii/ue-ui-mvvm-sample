@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ViewModelBase.h"
+#include "VMBase.h"
 #include "PauseMenuViewModel.generated.h"
 
 class AAssigmentPlayerController;
@@ -14,7 +14,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnViewHiddenSig);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeCursorSig, EMouseCursor::Type, CursorType);
 
 UCLASS()
-class ASSIGNMENT_API UPauseMenuViewModel : public UViewModelBase
+class ASSIGNMENT_API UPauseMenuViewModel : public UVMBase
 {
 	GENERATED_BODY()
 public:

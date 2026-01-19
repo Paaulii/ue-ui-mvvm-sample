@@ -38,7 +38,6 @@ void UHUDViewModel::SetHealthFillPercentage(float Value)
 	float Percentage = Value / MaxHealth;
 	if (UE_MVVM_SET_PROPERTY_VALUE(HealthFillPercentage, Percentage))
 	{
-		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(HealthFillPercentage);
 		SetHealth(Value);
 		ChangeHealthState();
 	}
@@ -46,10 +45,7 @@ void UHUDViewModel::SetHealthFillPercentage(float Value)
 
 void UHUDViewModel::SetHealth(float Value)
 {
-	if (UE_MVVM_SET_PROPERTY_VALUE(Health, Value))
-	{
-		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(Health);
-	}
+	UE_MVVM_SET_PROPERTY_VALUE(Health, Value);
 }
 
 void UHUDViewModel::UpdateSlotFillPercentage()
@@ -67,10 +63,7 @@ void UHUDViewModel::UpdateSlotFillPercentage()
 
 	ActiveSlotsCount = ActiveSlots;
 	float Percentage = (float)ActiveSlots / (float)SlotsNumber;
-	if (UE_MVVM_SET_PROPERTY_VALUE(SlotsFillPercentage, Percentage))
-	{
-		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(SlotsFillPercentage);
-	}
+	UE_MVVM_SET_PROPERTY_VALUE(SlotsFillPercentage, Percentage);
 }
 
 void UHUDViewModel::ChangeHealthState()

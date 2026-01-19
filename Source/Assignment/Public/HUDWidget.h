@@ -5,16 +5,23 @@
 #include "VMCharacterHealth.h"
 #include "Blueprint/UserWidget.h"
 #include "HUDWidget.generated.h"
+class UVMSlotIndicator;
 class UHUDViewModel;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCharacterHealthVMUpdatedSig, UVMCharacterHealth*, CharacterHealthVM);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCharacterHealthVMCreatedSig, UVMCharacterHealth*, CharacterHealthVM);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotIndicatorVMCreatedSig, UVMSlotIndicator*, SlotIndicatorVM);
 
 UCLASS()
 class ASSIGNMENT_API UHUDWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
-	void SetCharacterHealthViewModel(UVMCharacterHealth* CharacterHealthVM) const;
+	void OnSetCharacterHealthViewModel(UVMCharacterHealth* CharacterHealthVM) const;
+	
+	void OnSetSlotIndicatorViewModel(UVMSlotIndicator* SlotIndicatorVM) const;
 	
 	UPROPERTY(BlueprintAssignable)
-	FOnCharacterHealthVMUpdatedSig OnCharacterHealthVMUpdated;
+	FOnCharacterHealthVMCreatedSig OnCharacterHealthVMUpdated;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnSlotIndicatorVMCreatedSig OnSlotIndicatorVMCreatedSig;
 };
