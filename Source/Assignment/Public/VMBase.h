@@ -2,11 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "MVVMViewModelBase.h"
-#include "ViewModelBase.generated.h"
+#include "VMBase.generated.h"
 class APlayerCharacter;
 
 UCLASS()
-class ASSIGNMENT_API UViewModelBase : public UMVVMViewModelBase
+class ASSIGNMENT_API UVMBase : public UMVVMViewModelBase
 {
 	GENERATED_BODY()
 public:

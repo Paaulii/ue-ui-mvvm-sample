@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Enums.h"
 #include "MVVMViewModelBase.h"
+#include "VMBase.h"
 #include "VMCharacterHealth.generated.h"
 
 class AAssigmentPlayerController;
@@ -13,10 +14,12 @@ class APlayerCharacter;
  * 
  */
 UCLASS()
-class ASSIGNMENT_API UVMCharacterHealth : public UMVVMViewModelBase
+class ASSIGNMENT_API UVMCharacterHealth : public UVMBase
 {
 	GENERATED_BODY()
 public:
+	virtual void SetModel(APlayerCharacter* PlayerController) override;
+	
 	UFUNCTION()
 	void SetCurrentHealth(float Health);
 	void SetMaxHealth(float NewMaxHealth);
@@ -44,7 +47,6 @@ public:
 		return LastHealthState;
 	}
 
-	void SetModel(APlayerCharacter* PlayerController);
 protected:
 	UPROPERTY(BlueprintReadWrite, FieldNotify, Setter, Getter, Category = "ViewModel")
 	float CurrentHealth;

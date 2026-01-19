@@ -2,6 +2,15 @@
 
 #include "PlayerCharacter.h"
 
+void UVMCharacterHealth::SetModel(APlayerCharacter* PlayerCharacter)
+{
+	Super::SetModel(PlayerCharacter);
+	Model->OnHealthChanged.AddDynamic(this, &UVMCharacterHealth::SetCurrentHealth);
+
+	MaxHealth = Model->GetMaxHealth();
+	CurrentHealth = Model->GetHealth();
+	LowHealthThreshold = MaxHealth * LowHealthPercentageThreshold;
+}
 
 void UVMCharacterHealth::SetCurrentHealth(float NewCurrentHealth)
 {
@@ -20,15 +29,6 @@ float UVMCharacterHealth::GetHealthPercent() const
 	}
 	
 	return 0;
-}
-
-void UVMCharacterHealth::SetModel(APlayerCharacter* PlayerCharacter)
-{
-	PlayerCharacter->OnHealthChanged.AddDynamic(this, &UVMCharacterHealth::SetCurrentHealth);
-
-	MaxHealth = PlayerCharacter->GetMaxHealth();
-	CurrentHealth = PlayerCharacter->GetHealth();
-	LowHealthThreshold = MaxHealth * LowHealthPercentageThreshold;
 }
 
 void UVMCharacterHealth::SetMaxHealth(float NewMaxHealth)
