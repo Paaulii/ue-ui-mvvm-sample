@@ -22,10 +22,10 @@ void UPauseMenuViewModel::TogglePauseMenu()
 	bPauseMenuActive = !bPauseMenuActive;
 	if (bPauseMenuActive)
 	{
+		OnShowView.Broadcast();
 		PlayerController->SetPauseMenuVisible(true);
 		AdjustViewportPerPlatform();
 		PlayerController->SetGamePaused(true);
-		OnShowView.Broadcast();
 	}
 	else 
 	{
