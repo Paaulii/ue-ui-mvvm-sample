@@ -1,18 +1,18 @@
-#include "PauseMenuViewModel.h"
+#include "VMPauseMenu.h"
 #include "PlayerCharacter.h"
 #include "AssigmentPlayerController.h"
 #include "GameFramework/InputDeviceSubsystem.h"
 #include "GameFramework/InputDeviceProperties.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UPauseMenuViewModel::SetModels(APlayerCharacter* PlayerCharacter, AAssigmentPlayerController* Controller)
+void UVMPauseMenu::SetModels(APlayerCharacter* PlayerCharacter, AAssigmentPlayerController* Controller)
 {
 	Super::SetModel(PlayerCharacter);
 	PlayerController = Controller;
-	Model->OnPauseButtonPressed.AddDynamic(this, &UPauseMenuViewModel::TogglePauseMenu);
+	Model->OnPauseButtonPressed.AddDynamic(this, &UVMPauseMenu::TogglePauseMenu);
 }
 
-void UPauseMenuViewModel::TogglePauseMenu()
+void UVMPauseMenu::TogglePauseMenu()
 {
 	if (bHidePauseMenuTimerSet) 
 	{
@@ -32,11 +32,11 @@ void UPauseMenuViewModel::TogglePauseMenu()
 		PlayerController->SetGamePaused(false);
 		bHidePauseMenuTimerSet = true;
 		OnHideView.Broadcast();
-		PlayerController->GetWorldTimerManager().SetTimer(HideTimer, this, &UPauseMenuViewModel::HidePauseMenu, HidePauseMenuTimeout, false);
+		PlayerController->GetWorldTimerManager().SetTimer(HideTimer, this, &UVMPauseMenu::HidePauseMenu, HidePauseMenuTimeout, false);
 	}
 }
 
-void UPauseMenuViewModel::AdjustViewportPerPlatform() const
+void UVMPauseMenu::AdjustViewportPerPlatform() const
 {
 	EHardwareDevicePrimaryType LastUsedDevice = GetPlayerRecentlyUsedDeviceType();
 	EMouseCursor::Type CursorType = LastUsedDevice == EHardwareDevicePrimaryType::KeyboardAndMouse ?
@@ -44,24 +44,24 @@ void UPauseMenuViewModel::AdjustViewportPerPlatform() const
 	OnChangeCursor.Broadcast(CursorType);
 }
 
-void UPauseMenuViewModel::HidePauseMenu()
+void UVMPauseMenu::HidePauseMenu()
 {
 	PlayerController->SetPauseMenuVisible(false);
 	bHidePauseMenuTimerSet = false;
 	OnViewHidden.Broadcast();
 }
 
-void UPauseMenuViewModel::QuitGame() const
+void UVMPauseMenu::QuitGame() const
 {
 	PlayerController->QuitGame();
 }
 
-void UPauseMenuViewModel::ReturnToGame()
+void UVMPauseMenu::ReturnToGame()
 {
 	TogglePauseMenu();
 }
 
-EHardwareDevicePrimaryType UPauseMenuViewModel::GetPlayerRecentlyUsedDeviceType() const
+EHardwareDevicePrimaryType UVMPauseMenu::GetPlayerRecentlyUsedDeviceType() const
 {
 	UInputDeviceSubsystem* InputDeviceSubsystem = UInputDeviceSubsystem::Get();
 

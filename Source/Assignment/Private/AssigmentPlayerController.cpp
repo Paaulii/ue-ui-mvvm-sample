@@ -1,14 +1,11 @@
 #include "AssigmentPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "PlayerCharacter.h"
-#include "HUDViewModel.h"
 #include "PauseMenuWidget.h"
-#include "PauseMenuViewModel.h"
+#include "VMPauseMenu.h"
 #include "HUDWidget.h"
 #include "VMCharacterHealth.h"
 #include "VMSlotIndicator.h"
-#include "GameFramework/InputDeviceSubsystem.h"
-#include "GameFramework/InputDeviceProperties.h"
 
 void AAssigmentPlayerController::BeginPlay()
 {
@@ -80,7 +77,7 @@ void AAssigmentPlayerController::SetupUI()
 
 	if (PauseMenuViewModelClass != nullptr && PauseMenuWidgetClass != nullptr) 
 	{
-		PauseMenuViewModel = NewObject<UPauseMenuViewModel>(this, PauseMenuViewModelClass);
+		PauseMenuViewModel = NewObject<UVMPauseMenu>(this, PauseMenuViewModelClass);
 		PauseMenuViewModel->SetModels(PlayerCharacter, this);
 
 		PauseMenuWidget = CreateWidget<UPauseMenuWidget>(GetWorld(), PauseMenuWidgetClass);

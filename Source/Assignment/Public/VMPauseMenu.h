@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "VMBase.h"
-#include "PauseMenuViewModel.generated.h"
+#include "VMPauseMenu.generated.h"
 
 class AAssigmentPlayerController;
 enum class EHardwareDevicePrimaryType : uint8;
@@ -14,7 +14,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnViewHiddenSig);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeCursorSig, EMouseCursor::Type, CursorType);
 
 UCLASS()
-class ASSIGNMENT_API UPauseMenuViewModel : public UVMBase
+class ASSIGNMENT_API UVMPauseMenu : public UVMBase
 {
 	GENERATED_BODY()
 public:

@@ -8,7 +8,7 @@ class UVMSlotIndicator;
 class UVMCharacterHealth;
 class UInputMappingContext;
 class UPauseMenuWidget;
-class UPauseMenuViewModel;
+class UVMPauseMenu;
 class UWidget;
 class UHUDWidget;
 class UHUDViewModel;
@@ -38,7 +38,7 @@ protected:
 	TSubclassOf<UVMCharacterHealth> CharacterHealthViewModelClass = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
-	TSubclassOf<UPauseMenuViewModel> PauseMenuViewModelClass = nullptr;
+	TSubclassOf<UVMPauseMenu> PauseMenuViewModelClass = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI|Viewmodels")
 	TSubclassOf<UVMSlotIndicator> SlotIndicatorViewModelClass = nullptr;
@@ -64,5 +64,5 @@ private:
 	TObjectPtr<UVMSlotIndicator> SlotIndicatorViewModel = nullptr;
 	
 	UPROPERTY()
-	TObjectPtr<UPauseMenuViewModel> PauseMenuViewModel = nullptr;
+	TObjectPtr<UVMPauseMenu> PauseMenuViewModel = nullptr;
 };
